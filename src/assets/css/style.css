@@ -96,6 +96,7 @@ html {
 
 body {
   max-width: 600px;
+  min-width: 350px;
 
   display: flex;
   align-items: center;
@@ -115,6 +116,7 @@ body {
   background-color: var(--white);
   padding: 2.2em;
   border-radius: 15px;
+  margin: 1.5rem;
 }
 
 .layout-flex {
@@ -183,4 +185,10 @@ h1[dataIcon='star']::before {
 .faq-wrapper p {
   font-weight: var(--fw-400);
   color: var(--grayish-purple);
+}
+
+@media screen and (max-width: 950px) {
+  body {
+    background-image: url(/images/background-pattern-mobile.svg);
+  }
 }
