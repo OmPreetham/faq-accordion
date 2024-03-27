@@ -175,10 +175,15 @@ h1[dataIcon='star']::before {
   font-size: 1.1rem;
 }
 
-.faq-wrapper p {
+.faq-wrapper img {
+  cursor: pointer;
+}
+
+.hidden {
   display: none;
 }
-.faq1-wrapper p {
+
+.visible {
   display: contents;
 }
 

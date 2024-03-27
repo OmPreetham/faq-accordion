@@ -1,4 +1,19 @@
+import { useState } from 'react'
+import data from '../data/data.json'
+
 const FAQAccordion = () => {
+  const [visibleItems, setVisibleItems] = useState(
+    Array(data.length).fill(false)
+  )
+
+  const toggleFAQ = (index) => {
+    setVisibleItems((prevVisibleItems) => {
+      const updatedVisibleItems = [...prevVisibleItems]
+      updatedVisibleItems[index] = !updatedVisibleItems[index]
+      return updatedVisibleItems
+    })
+  }
+
   return (
     <div>
       <main>
@@ -9,62 +24,29 @@ const FAQAccordion = () => {
                 <h1 dataIcon="star">FAQs</h1>
               </div>
               <div className="faq-wrapper">
-                <article>
-                  <div className="faq1-wrapper">
-                    <div>
-                      <h2>What is Frontend Mentor, and how will it help me?</h2>
-                      <img src="/images/icon-plus.svg" alt="Plus Icon" />
-                    </div>
-                    <p>
-                      Frontend Mentor offers realistic coding challenges to help
-                      developers improve their frontend coding skills with
-                      projects in HTML, CSS, and JavaScript. It's suitable for
-                      all levels and ideal for portfolio building.
-                    </p>
-                  </div>
-                </article>
-                <article>
-                  <div className="faq2-wrapper">
-                    <div>
-                      <h2>Is Frontend Mentor free?</h2>
-                      <img src="/images/icon-plus.svg" alt="Plus Icon" />
-                    </div>
-                    <p>
-                      Yes, Frontend Mentor offers both free and premium coding
-                      challenges, with the free option providing access to a
-                      range of projects suitable for all skill levels.
-                    </p>
-                  </div>
-                </article>
-                <article>
-                  <div className="faq3-wrapper">
-                    <div>
-                      <h2>
-                        Can I use Frontend Mentor projects in my portfolio?
-                      </h2>
-                      <img src="/images/icon-plus.svg" alt="Plus Icon" />
-                    </div>
-                    <p>
-                      Yes, you can use projects completed on Frontend Mentor in
-                      your portfolio. It's an excellent way to showcase your
-                      skills to potential employers!
-                    </p>
-                  </div>
-                </article>
-                <article>
-                  <div className="faq4-wrapper">
-                    <div>
-                      <h2>How can I get help if I'm stuck on a challenge?</h2>
-                      <img src="/images/icon-plus.svg" alt="Plus Icon" />
-                    </div>
-                    <p>
-                      The best place to get help is inside Frontend Mentor's
-                      Discord community. There's a help channel where you can
-                      ask questions and seek support from other community
-                      members.
-                    </p>
-                  </div>
-                </article>
+                {data.map((faq, index) => {
+                  return (
+                    <article key={index}>
+                      <div className={`faq${faq.id}-wrapper`}>
+                        <div>
+                          <h2>{faq.question}</h2>
+                          <img
+                            onClick={() => toggleFAQ(index)}
+                            src={`/images/${
+                              visibleItems[index] ? 'icon-minus' : 'icon-plus'
+                            }.svg`}
+                            alt="Plus Icon"
+                          />
+                        </div>
+                        <p
+                          className={visibleItems[index] ? 'visible' : 'hidden'}
+                        >
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </article>
+                  )
+                })}
               </div>
             </div>
           </section>
