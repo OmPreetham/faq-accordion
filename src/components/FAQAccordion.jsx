@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import data from '../data/data.json'
+import data from '../assets/data/data.json'
 
 const FAQAccordion = () => {
   const [visibleItems, setVisibleItems] = useState(
