@@ -31,7 +31,7 @@ const FAQAccordion = () => {
                         <h2>{faq.question}</h2>
                         <img
                           onClick={() => toggleFAQ(index)}
-                          src={`/images/${
+                          src={`images/${
                             visibleItems[index] ? 'icon-minus' : 'icon-plus'
                           }.svg`}
                           alt="Plus Icon"
